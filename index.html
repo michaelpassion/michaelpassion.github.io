@@ -80,12 +80,12 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Mihcael&#39;s">
+<meta property="og:title" content="Michael&#39;s">
 <meta property="og:url" content="http://michaelpassion.github.io/index.html">
-<meta property="og:site_name" content="Mihcael&#39;s">
+<meta property="og:site_name" content="Michael&#39;s">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mihcael&#39;s">
+<meta name="twitter:title" content="Michael&#39;s">
 
 
 
@@ -121,7 +121,7 @@
 
 
 
-  <title>Mihcael's</title>
+  <title>Michael's</title>
   
 
 
@@ -152,12 +152,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Mihcael's</span>
+        <span class="site-title">Michael's</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle">精神家园</p>
+        <p class="site-subtitle">碎碎念</p>
       
   </div>
 
@@ -238,7 +238,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mihcael's">
+      <meta itemprop="name" content="Michael's">
     </span>
 
     
@@ -299,28 +299,14 @@
 
       
         
-          
-            <p>使用MAC 过程中会遇到某些主机环境需要使用特定的vpn软件才能连接，这时只能安装虚拟机并安装相应的软件来访问，比如如下情况：客户主机只能使用这个软件来访问。</p>
-<p><img src="https://s1.ax1x.com/2018/11/22/FPRMgx.jpg" alt=""></p>
-<p>开始时候尝试用ccproxy做转发，奈何虚拟机cpu和内存不足，开启后发热明显，Mac 不一会就成了电饼铛，在任务大致完成后。实在受不了，便开始从网上查找资料进行配置，然而大多数都是只字片语，详细的反而没操作成功，浪费一下午时间，结合自己薄弱的网络知识，自己找到了解决方法。下面直接说步骤：</p>
-<h4 id="1-使虚拟机能够上网，并且安装vpn软件-在为-SVClient-，我直接选择了PD的共享网络，简单方便，如图"><a href="#1-使虚拟机能够上网，并且安装vpn软件-在为-SVClient-，我直接选择了PD的共享网络，简单方便，如图" class="headerlink" title="1 使虚拟机能够上网，并且安装vpn软件(在为 SVClient) ，我直接选择了PD的共享网络，简单方便，如图"></a>1 使虚拟机能够上网，并且安装vpn软件(在为 SVClient) ，我直接选择了PD的共享网络，简单方便，如图</h4><p><img src="https://s1.ax1x.com/2018/11/22/FPR8bD.jpg" alt=""></p>
-<p>安装软件，填写账号，首先使虚拟机能连上客户主机，在成功设置后计算机会多一个网络连接，这个连接就是之后要分享给宿主机的连接(废话，分享别的也连不上客户主机啊！！！)</p>
-<p><img src="https://s1.ax1x.com/2018/11/22/FPRa8I.jpg" alt=""></p>
-<h4 id="2-为虚拟机添加另一块网卡，用来转发-Mac-的网络请求，此网卡设置为-Host-Only-模式"><a href="#2-为虚拟机添加另一块网卡，用来转发-Mac-的网络请求，此网卡设置为-Host-Only-模式" class="headerlink" title="2 为虚拟机添加另一块网卡，用来转发 Mac 的网络请求，此网卡设置为 Host-Only 模式"></a>2 为虚拟机添加另一块网卡，用来转发 Mac 的网络请求，此网卡设置为 Host-Only 模式</h4><p><img src="https://s1.ax1x.com/2018/11/22/FPRJVe.jpg" alt=""></p>
-<p>起始地址可以根据自己情况设置，不要与正常上网的网络有冲突，勾选 ==在系统偏好中显示== , 以便在后面使 Mac 也连接这块网卡</p>
-<h4 id="3-为-Mac-添加新的网络"><a href="#3-为-Mac-添加新的网络" class="headerlink" title="3 为 Mac 添加新的网络"></a>3 为 Mac 添加新的网络</h4><p><img src="https://s1.ax1x.com/2018/11/22/FPRt5d.jpg" alt=""></p>
-<p>使用DHCP获取地址即可，DNS服务器可以不填(因为这里不涉及域名解析)</p>
-<h4 id="4在虚拟机中将-VPN-网络连接共享"><a href="#4在虚拟机中将-VPN-网络连接共享" class="headerlink" title="4在虚拟机中将 VPN 网络连接共享"></a>4在虚拟机中将 VPN 网络连接共享</h4><p><img src="https://s1.ax1x.com/2018/11/22/FPRa8I.jpg" alt=""></p>
-<p>分享此网络连接 , 点击 –&gt; 属性 –&gt; 共享</p>
-<p><img src="https://s1.ax1x.com/2018/11/22/FPRYUH.jpg" alt=""></p>
-<p>需要将共享到 Host-Only 模式的连接，此处为 本地连接3</p>
-<p>在共享后，本地连接3的ip地址会自动设置，可能会设置为 192.168.0.1 这个地址比较特殊，我们需要改一下改为 192.168.0.200 (这是根据虚拟机网卡 Host-Only #2的地址段来确定的)</p>
-<p><img src="https://s1.ax1x.com/2018/11/22/FPRUPA.jpg" alt=""></p>
-<p><img src="https://s1.ax1x.com/2018/11/22/FP4neK.png" alt=""></p>
-<h4 id="5-大功告成，首先虚拟机和宿主机相互-ping-一下，测试下联通性。"><a href="#5-大功告成，首先虚拟机和宿主机相互-ping-一下，测试下联通性。" class="headerlink" title="5 大功告成，首先虚拟机和宿主机相互 ping 一下，测试下联通性。"></a>5 大功告成，首先虚拟机和宿主机相互 ping 一下，测试下联通性。</h4><p>设置没错的话，网络肯定是通了，但是。。。 在宿主机上访问客户主机时依然不通，原因在于宿主机的路由表里没有关于客户网段的路由，在访问客户主机时，也不会主动将请求先发到虚拟机，通过虚拟机转发。</p>
-<h4 id="6-添加路由表"><a href="#6-添加路由表" class="headerlink" title="6 添加路由表"></a>6 添加路由表</h4><p>在此加一条路由：<br><code>sudo route add -net 172.28.251.0/24 192.168.0.200</code><br>这条路由会将 <code>172.28.251.*</code> 的请求都转发到 <code>192.168.0.200</code> ，这样我们的宿主机 Mac 就可以上网啦</p>
-
-          
+          <p>使用MAC 过程中会遇到某些主机环境需要使用特定的vpn软件才能连接，这时只能安装虚拟机并安装相应的软件来访问，比如如下情况：客户主机只能使用这个软件来访问。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/25/虚拟机共享网络给宿主机使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
