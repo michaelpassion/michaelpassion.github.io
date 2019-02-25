@@ -1,0 +1,809 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="面试," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="死锁产生死锁的四个必要条件：
+互斥条件：一个资源每次只能被一个进程（线程）使用。
+请求与保持条件：一个进程（线程）因请求资源而阻塞时，对已获得的资源保持不放
+不剥夺条件：进程（线程）已经获得的资源，在未使用完之前，不能强行剥夺
+循环等待条件：多个进程（线程）之间形成一种头尾相接的循环等待资源关系。  
+
+死锁的预防：  
+
+破坏请求保持 每个进程必须一次性请求它们所需的所有资源，若无法全部获取">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础知识回顾">
+<meta property="og:url" content="http://michaelpassion.github.io/2014/08/27/ji-chu-zhi-shi-hui-gu/index.html">
+<meta property="og:site_name" content="Michael's blog">
+<meta property="og:description" content="死锁产生死锁的四个必要条件：
+互斥条件：一个资源每次只能被一个进程（线程）使用。
+请求与保持条件：一个进程（线程）因请求资源而阻塞时，对已获得的资源保持不放
+不剥夺条件：进程（线程）已经获得的资源，在未使用完之前，不能强行剥夺
+循环等待条件：多个进程（线程）之间形成一种头尾相接的循环等待资源关系。  
+
+死锁的预防：  
+
+破坏请求保持 每个进程必须一次性请求它们所需的所有资源，若无法全部获取">
+<meta property="og:updated_time" content="2015-02-23T14:22:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基础知识回顾">
+<meta name="twitter:description" content="死锁产生死锁的四个必要条件：
+互斥条件：一个资源每次只能被一个进程（线程）使用。
+请求与保持条件：一个进程（线程）因请求资源而阻塞时，对已获得的资源保持不放
+不剥夺条件：进程（线程）已经获得的资源，在未使用完之前，不能强行剥夺
+循环等待条件：多个进程（线程）之间形成一种头尾相接的循环等待资源关系。  
+
+死锁的预防：  
+
+破坏请求保持 每个进程必须一次性请求它们所需的所有资源，若无法全部获取">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://michaelpassion.github.io/2014/08/27/ji-chu-zhi-shi-hui-gu/"/>
+
+  <title> 基础知识回顾 | Michael's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Michael's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">watch me shine</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/About-Me" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                基础知识回顾
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-08-27T09:43:47+08:00" content="Aug 27 2014">
+              Aug 27 2014
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/08/27/ji-chu-zhi-shi-hui-gu/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/08/27/ji-chu-zhi-shi-hui-gu/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2014/08/27/ji-chu-zhi-shi-hui-gu/" class="leancloud_visitors" data-flag-title="基础知识回顾">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <a id="more"></a>
+<ol>
+<li>死锁<br>产生死锁的四个必要条件：</li>
+<li>互斥条件：一个资源每次只能被一个进程（线程）使用。</li>
+<li>请求与保持条件：一个进程（线程）因请求资源而阻塞时，对已获得的资源保持不放</li>
+<li>不剥夺条件：进程（线程）已经获得的资源，在未使用完之前，不能强行剥夺</li>
+<li>循环等待条件：多个进程（线程）之间形成一种头尾相接的循环等待资源关系。  </li>
+</ol>
+<p>死锁的预防：  </p>
+<ol>
+<li><strong>破坏请求保持</strong> 每个进程必须一次性请求它们所需的所有资源，若无法全部获取就等待，知道满足为止，也可以采用事务机制，确保可以回滚，既把获取、释放的资源做成原子性的。这样可以解决某些某些进程无法事先预估自己需要哪些资源  </li>
+<li><strong>破坏不可剥夺条件</strong> 一个已占有资源的进程若要再申请新的资源，它必须先释放已占有的资源。若随后再需要这些资源，需要重新申请。  </li>
+<li><strong>破坏循环等待条件</strong> 将系统中所有的资源设置标志位、排序，规定所有的进程申请资源必须以一定的顺序（升序或降序）做操作。</li>
+</ol>
+<hr>
+<p><strong>fork</strong><br>在UNIX中，除了PID=0 的交换进程，所有进程都是其他进程使用系统调用fork创建的，这里调用fork创建新进程的进程即为父进程，而穿件的进程为子进程，因而除了进程0以为爱的进程都只有一个父进程，但一个进程可以有多个子进程。如果用户fork一个子进程后exit，子进程的父进程将为init。<br>进程在linux中呈树桩结构，init为根节点，其它进程均有父进程。<br>fork的作用是复制一个与当前一样的进程。新进程的所有数据（变量，环境变量，程序计数器等）数值都与袁金成一致，但是是一个全新的进程，并作为原进程的子进程。<code>fork函数被调用一次但返回两次</code>。两次返回的唯一区别是<code>子进程中返回0值</code>而<code>父进程中返回子进程的ID</code>。  </p>
+<blockquote>
+<p><a href="http://music.douban.com/subject/1460454/" target="_blank" rel="external">转  Linux fork 运行机制  </a>  </p>
+</blockquote>
+<p> 给出如下C程序，在linux下使用gcc编译：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"sys/types.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"unistd.h"</span></span></div><div class="line"> <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">pid_t</span> pid1;</div><div class="line">    <span class="keyword">pid_t</span> pid2;</div><div class="line">    pid1 = fork();</div><div class="line">    pid2 = fork();</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"pid1:%d, pid2:%d\n"</span>, pid1, pid2);</div><div class="line">&#125;</div><div class="line">```  </div><div class="line">要求如下： </div><div class="line"></div><div class="line">已知从这个程序执行到这个程序的所有进程结束这个时间段内，没有其它新进程执行。  </div><div class="line"><span class="number">1</span>、请说出执行这个程序后，将一共运行几个进程。  </div><div class="line"><span class="number">2</span>、如果其中一个进程的输出结果是“pid1:<span class="number">1001</span>, pid2:<span class="number">1002</span>”，写出其他进程的输出结果（不考虑进程执行顺序）。   </div><div class="line"></div><div class="line">**预备知识**  </div><div class="line"><span class="number">1.</span> 进程可以看做程序的一次执行过程。在Linux下，每个进程有唯一的PID标志进程，PID是一个从<span class="number">1</span>到<span class="number">32768</span>得正整数，其中<span class="number">1</span>一般是特殊进程，其它进程从<span class="number">2</span>开始依次编号。当用完<span class="number">32768</span>后，从<span class="number">2</span>重新开始。  </div><div class="line"><span class="number">2.</span> linux中有一个叫进程表的结构用来存储当前正在运行的进程。可以使用“ps aux”命令查看所有正在运行的进程。  </div><div class="line"><span class="number">3.</span> 进程在linux中呈树状结构，init为根节点，其它进程均有父进程，某进程的父进程就是启动这个进程的进程，这个进程叫做父进程的子进程。  </div><div class="line"><span class="number">4.</span> fork的作用是复制一个与当前进程一样的进程。新进程的所有数据（变量、环境变量、程序计数器等）数值都和原进程一致，但是是一个全新的进程，并作为原进程的子进程。</div><div class="line"></div><div class="line">**解题关键**  </div><div class="line"></div><div class="line">![](http:<span class="comment">//pic001.cnblogs.com/images/2010/155795/2010100817495697.gif)  </span></div><div class="line"></div><div class="line">上图表示一个含有fork的程序，而fork语句可以看成将程序切为A、B两个部分。然后整个程序会如下运行：</div><div class="line"></div><div class="line">step1、设由shell直接执行程序，生成了进程P。P执行完Part. A的所有代码。 </div><div class="line"></div><div class="line">step2、当执行到pid = fork();时，P启动一个进程Q，Q是P的子进程，和P是同一个程序的进程。Q继承P的所有变量、环境变量、程序计数器的当前值。</div><div class="line"></div><div class="line">step3、在P进程中，fork()将Q的PID返回给变量pid，并继续执行Part. B的代码。</div><div class="line"></div><div class="line">step4、在进程Q中，将<span class="number">0</span>赋给pid，并继续执行Part. B的代码。</div><div class="line"></div><div class="line">**<span class="number">1</span>、P执行了所有程序，而Q只执行了Part. B，即fork()后面的程序。这是因为Q继承了P的PC-程序计数器</div><div class="line">**   </div><div class="line">**<span class="number">2</span>、Q继承了fork( )语句执行时当前的环境，而不是程序的初始环境。</div><div class="line">**  </div><div class="line">**<span class="number">3</span>、P中fork( )语句启动子进程Q，并将Q的PID返回，而Q中的fork( )语句不启动新进程，仅将<span class="number">0</span>返回。** </div><div class="line"></div><div class="line">**解题**</div><div class="line"><span class="number">1.</span> 从shell中执行此程序，启动了一个进程，假设这个进程为P0,设其PID为xxx；</div><div class="line"><span class="number">2.</span> 当执行到`pid1 = fork(); `时，Po启动的一个子进程P1，由题目知P1的PID为<span class="number">1001</span>，暂且不管P1。</div><div class="line"><span class="number">3.</span> Po中得fork返回<span class="number">1001</span>给`pid1`，继续执行到`pid2 = fork();`，此时启动另一个新进程，设为P2,由题目知pid2为<span class="number">1002</span>。同样暂且不管P2。</div><div class="line"><span class="number">4.</span> P0中的第二个fork返回<span class="number">1002</span>给pid2，继续执行完后续程序，结束。所以，P0的结果为“pid1:<span class="number">1001</span>, pid2:<span class="number">1002</span>”。</div><div class="line"><span class="number">5.</span> 再看P2，P2生成时，P0中pid1=<span class="number">1001</span>，所以P2中pid1继承P0的<span class="number">1001</span>，而作为子进程pid2=<span class="number">0</span>。P2从第二个fork后开始执行，结束后输出“pid1:<span class="number">1001</span>, pid2:<span class="number">0</span>”。</div><div class="line"><span class="number">6.</span> 接着看P1，P1中第一条fork返回<span class="number">0</span>给pid1，然后接着执行后面的语句。而后面接着的语句是pid2 = fork();执行到这里，P1又产生了一个新进程，设为P3。先不管P3。</div><div class="line"><span class="number">7.</span> P1中第二条fork将P3的PID返回给pid2，由预备知识知P3的PID为<span class="number">1003</span>，所以P1的pid2=<span class="number">1003</span>。P1继续执行后续程序，结束，输出“pid1:<span class="number">0</span>, pid2:<span class="number">1003</span>”。</div><div class="line"><span class="number">8.</span> P3作为P1的子进程，继承P1中pid1=<span class="number">0</span>，并且第二条fork将<span class="number">0</span>返回给pid2，所以P3最后输出“pid1:<span class="number">0</span>, pid2:<span class="number">0</span>”。</div><div class="line"><span class="number">9.</span> 至此，整个执行过程完毕。</div><div class="line"></div><div class="line">**所得答案：**  </div><div class="line"></div><div class="line">      <span class="number">1</span>、一共执行了四个进程。（P0, P1, P2, P3）</div><div class="line"></div><div class="line">      <span class="number">2</span>、另外几个进程的输出分别为：</div><div class="line"></div><div class="line">      pid1:<span class="number">1001</span>, pid2:<span class="number">0</span></div><div class="line"></div><div class="line">      pid1:<span class="number">0</span>, pid2:<span class="number">1003</span></div><div class="line"></div><div class="line">      pid1:<span class="number">0</span>, pid2:<span class="number">0</span>  </div><div class="line">      </div><div class="line">![](http:<span class="comment">//pic001.cnblogs.com/images/2010/155795/2010100817501849.gif)</span></div><div class="line"></div><div class="line"></div><div class="line">##**raid**</div><div class="line"><span class="number">___</span></div><div class="line">其基本思想就是把多个相对便宜的硬盘组合起来,成为一个硬盘阵列组,使性能达到甚 至超过一个价格昂贵、容量巨大的硬盘。根据选择的版本不同,RAID 比单颗硬盘有以下一 个或多个方面的好处:增强资料整合度,增强容错功能,增加处理量或容量。另外,磁碟阵 列对于电脑来说, 看起来就像一个单独的硬盘或逻辑存储单元。  RAID 把多个硬盘组合成为一个逻辑磁区,因此,作业系统只会把它当作一个硬盘。RAID 目前有 <span class="number">0</span>~<span class="number">7</span> 及其中的若干两种组合等十余种不同的等级,不同的 RAID 方法各有其优缺点,  </div><div class="line"> RAID <span class="number">0</span>: 将多个硬盘合为一个,一个损坏,即不可用,  </div><div class="line"> RAID <span class="number">1</span>: 镜像方式存储,利用率仅 <span class="number">1</span>/<span class="number">2</span>,但可靠性高</div><div class="line"> </div><div class="line"> ##堆栈数据代码区 <span class="number">___</span></div><div class="line"> 在UNIX中，从高地址到低地址一次为 <span class="built_in">stack</span> heap data text  </div><div class="line"> </div><div class="line">* 栈区(<span class="built_in">stack</span>) 由编译器自动分配释放，存放函数的参数值，局部变量值等。</div><div class="line">* 堆区 （heap）一般由程序员分配释放，如程序员不释放，程序结束时可能由OS回收。</div><div class="line">* 全局区（静态区 <span class="keyword">static</span>）全局变量和静态变量的存储是放在一起的，初始化的全局变量和静态变量在一块区域data段，未初始化的全局变量和未初始化的静态变量在相邻的另一块区域bss段。程序结束后由系统释放</div><div class="line">* 文字常量区 常量字符串就是放在这里。常量字符串不恩能够修改，否则程序会在运行期崩溃。程序结束后由系统释放。</div><div class="line">* 程序代码区 存放函数体的二进制代码。</div><div class="line"></div><div class="line">c++面向对象语言 </div><div class="line">---</div><div class="line">---</div><div class="line">**<span class="keyword">const</span>**</div></pre></td></tr></table></figure></p>
+<p>int b = 500;<br>const int<em> a = &b; [1]<br>int const </em>a = &b; [2]<br>￼int<em> const a = &b; [3]<br>const int</em> const a = &b; [4]</p>
+<p>```</p>
+<p>如果const位于<code>*</code>左侧，则const就是用来修饰指针所指向的变量，既指针指向为常量；  </p>
+<p>如果const位于<code>*</code>右侧，则const就是修饰指针本身，既指针本身是常量。  </p>
+<p>还有一个有效的办法是反着读： 如[1] a指向（<code>*</code>）int型常量；[2]a指向(<code>*</code>)常量是int型；[3]a是常量指针指向(<code>*</code>)int型变量; [4]a是常量指针指向(<code>*</code>)int型常量   </p>
+<h2 id="深拷贝-和-浅拷贝"><a href="#深拷贝-和-浅拷贝" class="headerlink" title="深拷贝 和 浅拷贝"></a>深拷贝 和 浅拷贝</h2><hr>
+<p>浅拷贝：被复制的对象的所有变量都含有原来对象相同的值，而其所有的对其他对象的引用都仍然指向原来的对象。浅拷贝复制时，将这个对象的值字段和引用字段（均为非晶态字段）全部复制过去，获得了这个对象的值和地址。即：当其中一个对象的引用字段所指向的地址中的变量变化时，所有浅拷贝对象中的该引用字段都会发生变化。<br>深拷贝：被复制对象会讲所有非引用类型的字段复制给新对象，同事将引用类型所指向地址中存储的对象复制给新的对象。深拷贝与浅拷贝的具备在于对引用类型的对待上，一个是复制地址（浅拷贝）。另一个是复制地址指向位置的数据(深拷贝)。</p>
+<h2 id="c-c-可变参数的实现"><a href="#c-c-可变参数的实现" class="headerlink" title="c/c++可变参数的实现"></a>c/c++可变参数的实现</h2><hr>
+<ol>
+<li>可变参数的原理</li>
+<li>可变长书的设计</li>
+<li>可变参数的实现</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag">#面试</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/08/26/next-permutation/" rel="next" title="next_permutation">
+                <i class="fa fa-chevron-left"></i> next_permutation
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/08/27/pow-x/" rel="prev" title="Pow(x,y)">
+                Pow(x,y) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/08/27/ji-chu-zhi-shi-hui-gu/"
+           data-title="基础知识回顾" data-url="http://michaelpassion.github.io/2014/08/27/ji-chu-zhi-shi-hui-gu/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Michael Yin" />
+          <p class="site-author-name" itemprop="name">Michael Yin</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">89</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#深拷贝-和-浅拷贝"><span class="nav-number">1.</span> <span class="nav-text">深拷贝 和 浅拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-c-可变参数的实现"><span class="nav-number">2.</span> <span class="nav-text">c/c++可变参数的实现</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Michael Yin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"michalpassion"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("xokQpSM051Q3krFTxov9LTL3-gzGzoHsz", "KFhvGa48KISDUidoLYjO3IJf");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,805 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="instruments," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="此教程来自 raywenderlich.com ，介绍了使用 Instruments 的最重要的几个方面。Instruments 可以用来检查代码的性能，内存，引用循环，等其他问题。通过此教程，你可以了解以下内容： 
+
+使用 Time Profiler 工具来查找代码中的 hot-spots， 从而使你的代码更加高效  
+使用 Allocations 工具检测和修复内存管理问题，如代码中得 str">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Instruments Tutorial with Swift: Getting Started">
+<meta property="og:url" content="http://michaelpassion.github.io/2016/07/17/Instruments-Tutorial-with-Swift-Getting-Started/index.html">
+<meta property="og:site_name" content="Michael's blog">
+<meta property="og:description" content="此教程来自 raywenderlich.com ，介绍了使用 Instruments 的最重要的几个方面。Instruments 可以用来检查代码的性能，内存，引用循环，等其他问题。通过此教程，你可以了解以下内容： 
+
+使用 Time Profiler 工具来查找代码中的 hot-spots， 从而使你的代码更加高效  
+使用 Allocations 工具检测和修复内存管理问题，如代码中得 str">
+<meta property="og:image" content="http://www.raywenderlich.com/wp-content/uploads/2015/03/iOS-Simulator-Screen-Shot-21-Mar-2015-00.01.35.png">
+<meta property="og:image" content="https://cdn2.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-21-at-00.07.10-700x393.png">
+<meta property="og:image" content="https://cdn3.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-21-at-00.12.32-700x394.png">
+<meta property="og:image" content="http://www.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-21-at-00.14.53.png">
+<meta property="og:image" content="https://cdn2.raywenderlich.com/wp-content/uploads/2015/03/Pasted_Image_21_03_2015_00_17-700x497.png">
+<meta property="og:image" content="https://cdn3.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-21-at-00.22.21.png">
+<meta property="og:image" content="https://cdn2.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-21-at-00.24.07-700x371.png">
+<meta property="og:image" content="http://www.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-21-at-00.25.39.png">
+<meta property="og:image" content="https://cdn5.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-21-at-00.27.59-700x28.png">
+<meta property="og:image" content="https://cdn2.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-21-at-00.33.15-700x102.png">
+<meta property="og:updated_time" content="2016-07-26T15:30:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Instruments Tutorial with Swift: Getting Started">
+<meta name="twitter:description" content="此教程来自 raywenderlich.com ，介绍了使用 Instruments 的最重要的几个方面。Instruments 可以用来检查代码的性能，内存，引用循环，等其他问题。通过此教程，你可以了解以下内容： 
+
+使用 Time Profiler 工具来查找代码中的 hot-spots， 从而使你的代码更加高效  
+使用 Allocations 工具检测和修复内存管理问题，如代码中得 str">
+<meta name="twitter:image" content="http://www.raywenderlich.com/wp-content/uploads/2015/03/iOS-Simulator-Screen-Shot-21-Mar-2015-00.01.35.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://michaelpassion.github.io/2016/07/17/Instruments-Tutorial-with-Swift-Getting-Started/"/>
+
+  <title> Instruments Tutorial with Swift: Getting Started | Michael's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Michael's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">watch me shine</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/About-Me" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Instruments Tutorial with Swift: Getting Started
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-17T16:00:09+08:00" content="Jul 17 2016">
+              Jul 17 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/tutorial/" itemprop="url" rel="index">
+                    <span itemprop="name">tutorial</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/17/Instruments-Tutorial-with-Swift-Getting-Started/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/Instruments-Tutorial-with-Swift-Getting-Started/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/07/17/Instruments-Tutorial-with-Swift-Getting-Started/" class="leancloud_visitors" data-flag-title="Instruments Tutorial with Swift: Getting Started">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>此教程来自 <a href="https://www.raywenderlich.com/97886/instruments-tutorial-with-swift-getting-started" target="_blank" rel="external">raywenderlich.com</a> ，介绍了使用 Instruments 的最重要的几个方面。Instruments 可以用来检查代码的性能，内存，引用循环，等其他问题。<br>通过此教程，你可以了解以下内容： </p>
+<ol>
+<li>使用 <code>Time Profiler</code> 工具来查找代码中的 <strong>hot-spots</strong>， 从而使你的代码更加高效  </li>
+<li>使用 <code>Allocations</code> 工具检测和修复内存管理问题，如代码中得 <strong>strong reference cycles</strong>  </li>
+</ol>
+<h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><p>本教程不会从创建 APP 开始，我们将使用一个准备好的 project， 你的任务是快速了解这个 APP 然后跟随教程来优化这个 APP – 和你将来要优化自己的 apps 一样。<a href="https://github.com/brianhill/instruments-swift-starter.git" target="_blank" rel="external">下载地址</a>   </p>
+<p>这个 app 使用 Flickr API 来搜索图片。你需要一个API key 来使用这些 API。你可以从<a href="http://www.flickr.com/services/api/explore/?method=flickr.photos.search" target="_blank" rel="external">http://www.flickr.com/services/api/explore/?method=flickr.photos.search</a> 搜索任何东西，从页面底部生成的 URL 中复制 API key。 API key 在 <code>&amp;api_key=</code> 和 下一个 <code>&amp;</code> 之间的部分。比如如果 URL 是：<br><a href="http://api.flickr.com/services/rest/?method=flickr.photos.search&amp;" target="_blank" rel="external">http://api.flickr.com/services/rest/?method=flickr.photos.search&amp;</a><br>api_key=6593783efea8e7f6dfc6b70bc03d2afb&amp;format=rest&amp;api_sig=f24f4e98063a9b8ecc8b522b238d5e2f<br> 则API key 是： 6593783efea8e7f6dfc6b70bc03d2afb.<br> 将API key 粘贴到 <em>FlickrSearcher.swift</em> 文件顶部的相应位置，替换文件中得 API key。<br> 需要注意的时，这个 API key隔几天会变动，所以你需要时不时地重新生成key。App 会在当前的key失效后提示你。<br> build and run, 随便搜索下，点击搜索结果，会有以下以下效果：<br> <img src="http://www.raywenderlich.com/wp-content/uploads/2015/03/iOS-Simulator-Screen-Shot-21-Mar-2015-00.01.35.png" alt="">    </p>
+<p> 浏览下这个app， 查看下它的基本功能。你可能觉得一旦 UI 再好看点就可以直接发布了。然而，你很快就会见识到使用 <code>instruments</code> 会给你的 app 带来什么。<br> 本教程接下来的部分会展示怎么发现并修改这个app中得问题。你也将见识到 <code>instruments</code> 会将 debugging 问题变得多么容易 :] </p>
+<h3 id="Time-for-Profiling"><a href="#Time-for-Profiling" class="headerlink" title="Time for Profiling"></a>Time for Profiling</h3><p> 第一个学习的工具是 <em>Time Profiler</em>, <code>Instruments</code> 会在一定的时间段中止程序的执行并记录每一个运行中的线程的 <code>stack trace</code>栈轨迹。你可以把这看做按下了Xcode dubugger 中的暂停键。<br>先看一下 <em>Time Profiler</em> 的样子。<br><img src="https://cdn2.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-21-at-00.07.10-700x393.png" alt="">  </p>
+<p>这张图片展示是 <em><code>Call Tree</code></em>。<em><code>Call Tree</code></em> 展示了app中多种方法的运行时间。每一行都是一个不同的方法，在其后是程序的执行路径。每个方法执行的时间可以通过 <code>prifiler</code>停留在每个方法中的次数来计算。<br>例如， 如果在100个1毫秒的样本中，某个特定的方法出现在10个样本中的栈的栈顶，那么可以推断出将近10%的时间 – 10毫秒 –在执行这个方法。这种估计方式也许粗暴，但是能用！<br>注意：大多数情况下，你应该在真实设备上 profile 你的 app，而不是模拟器上。iOS模拟器后是你MAC电脑的所有资源，而一个iOS设备存在各种手机硬件的限制。也许你的app再模拟器中运行的很好，但是运行在只能是设备中就会发现各种运行问题。<br>闲话少说，开始 instrumenting!<br>从Xcode的菜单栏中，选择 <em>Product\Profile</em>, 或快捷键 <code>⌘I</code>。这样会创建这个 app 并运行 <code>Instruments</code>. 你会看到这样的可选择的窗口：<br><img src="https://cdn3.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-21-at-00.12.32-700x394.png" alt=""><br>这些是 <code>Instruments</code> 各种模板。<br>选择 <em><code>Time Profiler</code></em>。打开一个新的 Instrument 文件。 点击左上角红色的 record 按键开始录制并运行app。系统可能会要求你提供密码来授权 Instruments 分析其他进程 – 不用担心，在这里可以放心提供！:]<br>在 Instruments 窗口中可以看到时间在不停增长，一个小箭头从屏幕中央的图表中自左向右移动。这表示这个 app 正在运行。<br>开始使用app。 搜索一些图片，然后查看一个或多个搜索结果。你可能会注意到得到一个搜索结果慢的令人发指，而且在搜索结果中滑动浏览也及其卡顿 - 这是个特别难用的 app！<br>幸运地是，稍后你将亲自完善这个 app！ 先大致了解下 Instruments。<br>首先，首先确保工具栏右手边的视图选择器都处于选中状态，如下所示：<br><img src="http://www.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-21-at-00.14.53.png" alt=""><br>这会确保所有的“仪表盘”都是打开的。现在研究下面的屏幕截图及其下对截图中每个部分的介绍:<br><img src="https://cdn2.raywenderlich.com/wp-content/uploads/2015/03/Pasted_Image_21_03_2015_00_17-700x497.png" alt="">  </p>
+<ol>
+<li>这些是录制控制工具，红色的 ‘record’ 键用来停止&amp;启动 当前被记录的 app。如你想的一样，暂停键用来暂停当前运行的app。  </li>
+<li>这是运行计时器。这个计时器记录当前被 profield 的app 运行了多长时间，运行了多少次。如果你使用 录制按钮停止app然后再重启app，这会开始一个新的录制而且这里的显示将会变为 <em>Run 2 of 2</em>。   </li>
+<li>这个被成为“足迹” <em>（track）</em>. 因为选择了 <strong>Time Profiler</strong> 模板，只有一个工具所以只有一条 <em>track</em>。 你会在本教程以后的部分学习到这里展示的更多种类的图像。</li>
+<li>这是详情面板。这里展示了你正在使用的 Instrument 的主要信息。在当前情况下，它展示了那些方法是“最热门”的 – 即占用CPU时间最久的。</li>
+</ol>
+<p>如果你点击上面写有 <strong>Call Tree</strong>(左手边的)的条然后选择 <strong>Sample List</strong>，将展示不同类型的数据。 这个视图将展示每个样本。点击几个样本，你会发现被捕获的 <code>stack trace</code> 栈轨迹出现在 <strong>Extended Detail</strong> 面板中。  </p>
+<ol>
+<li>这是检查面板。有三个检查视图，分别是： 录制设置， 显示设置，和扩展信息详情，接下来你会对这些选项了解更多。  </li>
+</ol>
+<p>现在先来修复难用的 UI！:]  </p>
+<h3 id="深入研究"><a href="#深入研究" class="headerlink" title="深入研究"></a>深入研究</h3><p>执行一次图片搜索，并查看搜索结果。我个人喜欢搜索“小狗”，但是尽管搜索你想搜索的-万一你是一个猫粉呢 :]<br>现在，将图片列表上下滑动几次以便在<code>Time Profiler</code>中得到多一些的数据。你应该会注意到敞口中间的数字在不断变化而且图表在不断写入数据；这意味着cpu周期在被使用。<br>你可能没想过有UI能卡城这样；只有列表滑动起来如黄油一般丝滑才可以真正用来展示！为了丁伟问题，你需要设置一些选项。<br>在右手边，选择 <code>Display Settings</code> 面板(快捷键 ⌘+2)。在面板中 <code>Call Tree</code>部分，选择 <code>Separate by Thread, Invert Call Tree, Hide Missing Symbols, Hide System Libraries</code>。如下图所示：<br><img src="https://cdn3.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-21-at-00.22.21.png" alt=""><br>下面是每个选项对左手边所展示数据起到的作用：  </p>
+<ul>
+<li><strong>Separate by Thread</strong> 每个线程要单独考虑。通过这个选项可以知道那个线程使用的CPU最多。</li>
+<li><strong>Invert Call Tree</strong> 选中这个选项，栈轨迹从顶向低展示。通常这正是你想要的，因为你想看到的是占用CPU时间最多的最底层的方法。  </li>
+<li><strong>Hide Missing Symbols</strong>  如果找不到你应用或是系统框架的 dSYM 文件，那么你将只能看到二进制中地址对应的16进制的值，而不是方法名（符号）。选中这个选项，则只有完全解析的符号会展示出来，没有解析的16进制的值将被隐藏。这有助于整理当前展示的数据。  </li>
+<li><strong>Hide System Libraries</strong> 这个选项被选中时，只显示你自己 app 中的方法。通常情况下会选中这个选项，因为你只关心那些CPU时间花费在你的代码中 – 你对系统软件使用的CPU时间也没啥办法！ </li>
+<li><strong>Flatten Recursion</strong>  这个选项将每个栈轨迹中的递归函数(自己调用自己)作为一个入口来处理，而不是多个。  </li>
+<li><strong>Top Functions</strong> 选中这个选项，Instruments会将花费在方法自身花费的时间和在方法中调用其他方法，其他方法花费的时间一起作为该方法的总时间。即如果方法A中调用了方法B，则A所花费的时间为在A消耗的时间加上方法B的时间。这个机制很有用，它使你在深入调用栈时可以选出耗时最多的而一个，从而减少最耗时的方法的时间。  </li>
+<li>如果你在运行一个 Objective-C 应用，还有一个选项是<strong>Show Obj-C Only</strong>： 如果选中了，则只有Objecti-C方法会展示，而不是所有的C或C++方法。可能你的程序中没有C或C++方法，但是如果你在调优的是一个 OpenGL 应用，就可能会有一些C++函数。  </li>
+</ul>
+<p>虽然一些值可能不太一样，如果你选中了以上选项，则各个入口的顺序应该和以下表格差不多。<br><img src="https://cdn2.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-21-at-00.24.07-700x371.png" alt=""><br>应用卡顿的原因在于，很大一部分时间花费在给缩略图想应用调色滤镜上。你可能对此不感到意外，因为列表加载和滑动是UI中最卡顿的部分，此时列表表格在不断的更新。<br>双击列表中得任意行，查看函数中到底进行了那些操作。双击后将看到以下视图：<br><img src="http://www.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-21-at-00.25.39.png" alt=""><br>挺有趣不是吗！<code>applyTonalFilter()</code>是添加到 <code>UIImage</code> 类的一个 extension， 而且几乎 100% 的时间花费在应用图像滤镜后创建 <code>CGImage</code> 输出。<br>在这个部分没什么好做的来加速这个过程：创建图片是一个比较紧凑的过程，不可能能任意减少。让我们退一步看看 <code>applyTonalFiter()</code>在那里被调用。点击代码视图顶部的面包屑导航栏 <code>Call Tree</code>，返回之前的视图：<br><img src="https://cdn5.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-21-at-00.27.59-700x28.png" alt=""><br>点击表格顶部 <code>applyTonalFilter</code> 行左边的小箭头。会展开<code>Call Tree</code> 显示 <code>applyTonalFilter</code>的调用者们。你可能还需要展开下一行；当解析 Swift 时，在 <code>Call Tree</code>中会有重复的行，前缀带有 <code>@objc</code>。 你感兴趣的是第一行，前缀是你应用的名字 <code>(InstrumentsTutorial)</code>:<br><img src="https://cdn2.raywenderlich.com/wp-content/uploads/2015/03/Screen-Shot-2015-03-21-at-00.33.15-700x102.png" alt=""><br>在当前情况下，这一行参考了搜索结果的 collection 视图的 <code>cellForItemAtIndexPath</code>方法。双击这行查看项目中得相关代码。<br>现在，你可以看到问题所在了。调用色调滤镜的方法执行占用了大量时间，而且是在 <code>cellForItemAtIndexPath</code>中直接调用的，这样每次请求一个调色过的图像都会堵塞主线程（从而使UI变卡顿）    </p>
+<p>To be continue …</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/instruments/" rel="tag">#instruments</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/16/Path-Sum/" rel="next" title="Path Sum">
+                <i class="fa fa-chevron-left"></i> Path Sum
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/18/Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal/" rel="prev" title="Construct Binary Tree from Preorder and Inorder Traversal">
+                Construct Binary Tree from Preorder and Inorder Traversal <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/17/Instruments-Tutorial-with-Swift-Getting-Started/"
+           data-title="Instruments Tutorial with Swift: Getting Started" data-url="http://michaelpassion.github.io/2016/07/17/Instruments-Tutorial-with-Swift-Getting-Started/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Michael Yin" />
+          <p class="site-author-name" itemprop="name">Michael Yin</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">89</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-for-Profiling"><span class="nav-number">2.</span> <span class="nav-text">Time for Profiling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入研究"><span class="nav-number">3.</span> <span class="nav-text">深入研究</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Michael Yin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"michalpassion"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("xokQpSM051Q3krFTxov9LTL3-gzGzoHsz", "KFhvGa48KISDUidoLYjO3IJf");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

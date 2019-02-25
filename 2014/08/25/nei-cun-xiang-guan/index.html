@@ -1,0 +1,803 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="c++,基础知识," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="###1. 内存对齐： 编译器会自动进行成员变量的对齐，以提高运算效率。缺省情况下，编译器为结构体的每个成员按其自然对界（natural alignment）条件分配内存。每个成员按照它们被声明的顺序在内存中存储，第一个成员的地址和整个结构体的地址相同。 为什么要进行内存对齐呢，原因在于，为了访问未对齐的内存，处理器需要作两次内存访问；然而，对齐的内存访问仅需要一次访问。所以为了内存的有效利用，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内存相关">
+<meta property="og:url" content="http://michaelpassion.github.io/2014/08/25/nei-cun-xiang-guan/index.html">
+<meta property="og:site_name" content="Michael's blog">
+<meta property="og:description" content="###1. 内存对齐： 编译器会自动进行成员变量的对齐，以提高运算效率。缺省情况下，编译器为结构体的每个成员按其自然对界（natural alignment）条件分配内存。每个成员按照它们被声明的顺序在内存中存储，第一个成员的地址和整个结构体的地址相同。 为什么要进行内存对齐呢，原因在于，为了访问未对齐的内存，处理器需要作两次内存访问；然而，对齐的内存访问仅需要一次访问。所以为了内存的有效利用，">
+<meta property="og:image" content="http://www.opensourceforu.com/wp-content/uploads/2011/03/MapReduce.jpg">
+<meta property="og:updated_time" content="2015-02-24T02:34:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="内存相关">
+<meta name="twitter:description" content="###1. 内存对齐： 编译器会自动进行成员变量的对齐，以提高运算效率。缺省情况下，编译器为结构体的每个成员按其自然对界（natural alignment）条件分配内存。每个成员按照它们被声明的顺序在内存中存储，第一个成员的地址和整个结构体的地址相同。 为什么要进行内存对齐呢，原因在于，为了访问未对齐的内存，处理器需要作两次内存访问；然而，对齐的内存访问仅需要一次访问。所以为了内存的有效利用，">
+<meta name="twitter:image" content="http://www.opensourceforu.com/wp-content/uploads/2011/03/MapReduce.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://michaelpassion.github.io/2014/08/25/nei-cun-xiang-guan/"/>
+
+  <title> 内存相关 | Michael's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Michael's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">watch me shine</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/About-Me" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                内存相关
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-08-25T22:24:17+08:00" content="Aug 25 2014">
+              Aug 25 2014
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Collection/" itemprop="url" rel="index">
+                    <span itemprop="name">Collection</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/08/25/nei-cun-xiang-guan/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/08/25/nei-cun-xiang-guan/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2014/08/25/nei-cun-xiang-guan/" class="leancloud_visitors" data-flag-title="内存相关">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <a id="more"></a>
+<p>###1. 内存对齐：<br> 编译器会自动进行成员变量的对齐，以提高运算效率。缺省情况下，编译器为结构体的每个成员按其自然对界（natural alignment）条件分配内存。每个成员按照它们被声明的顺序在内存中存储，第一个成员的地址和整个结构体的地址相同。<br> 为什么要进行内存对齐呢，原因在于，为了访问未对齐的内存，处理器需要作两次内存访问；然而，对齐的内存访问仅需要一次访问。所以为了内存的有效利用，我们有必要在定义结构体前考虑下成员的顺序。字，双字，和四字在自然边界上不需要在内存中对齐。（对字，双字，和四字来说，自然边界分别是偶数地址，可以被4 整除的地址，和可以被8 整除的地址。）<br> 除此之外我们还可以利用#pragma pack（）来改变编译器的默认对齐方式。使用伪指令#pragma pack (n)，编译器将按照n个字节对齐；使用伪指令#pragma pack ()，取消自定义字节对齐方式。注意：如果<br>/#pragma pack (n)中指定的n大于结构体中最大成员的size，则其不起作用，结构体仍然按照size最大的成员进行对界。其对齐的规则是,每个成员按其类型的对齐参数(通常是这个类型的大小)和指定对齐参数<br>(这里是n 字节)中较小的一个对齐，即：min( n, sizeof( item ))</p>
+<p>###2. struct与class的区别:<br>在C++中，struct与class的区别有两点，一是struct中成员变量和函数的默认访问权限为public，而class的为private。二是由于C++中struct兼容了C中的struct的所有特性，可以定义的时候直接<br>以{ }对其成员变量赋初值，而class则不能。</p>
+<p>###cpu与外设之间的数据传送方式   </p>
+<ol>
+<li><p>程序传送方式</p>
+<ul>
+<li><p>程序查询方式分为无条件传送方式和查询方式（条件传送方式）两种。</p>
+<ul>
+<li><p>微机系统中的一些简单的外设，如开关、继电器、数码管、发光二极管等，在它们工作时，可以认为输入设备已随时准备好向CPU提供数据，而输出设备也随时准备好接收CPU送来的数据，这样，在CPU需要同外设交换信息时，就能够用IN或OUT指令直接对这些外设进行输入/输出操作。由于在这种方式下CPU对外设进行输入/输出操作时无需考虑外设的状态，故称之为无条件传送方式。 </p>
+<ul>
+<li>查询传送也称为条件传送，是指在执行输入指令（IN）或输出指令（OUT）前，要先查询相应设备的状态，当输入设备处于准备好状态、输出设备处于空闲状态时，CPU才执行输入/输出指令与外设交换信息。为此，接口电路中既要有数据端口，还要有状态端口。  </li>
+</ul>
+<p>1．CPU从接口中读取状态字；<br>  2．CPU检测相应的状态位是否满足“就绪”条件；<br>3．如果不满足，则重复1、2步；若外设已处于“就绪”状态，则传送数据。 </p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>中断传送方式</p>
+<ul>
+<li>中断传送方式是指当外设需要与CPU进行信息交换时，由外设向CPU发出请求信号，使CPU暂停正在执行的程序，转去执行数据的输入/输出操作，数据传送结束后，CPU再继续执行被暂停的程序。   </li>
+</ul>
+</li>
+<li><p>直接存储器存取（DMA）</p>
+<ul>
+<li>DMA传送方式是在存储器和外设之间、存储器和存储器之间直接进行数据传送(如磁盘与内存间交换数据、高速数据采集、内存和内存间的高速数据块传送等)，传送过程无需CPU介入，这样，在传送时就不必进行保护现场等一系列额外操作，传输速度基本取决于存储器和外设的速度。DMA传送方式需要一个专用接口芯片DMA控制器（DMAC）对传送过程加以控制和管理。进行DMA传送期间，CPU放弃总线控制权，将系统总线交由DMAC控制，由DMAC发出地址及读/写信号来实现高速数据传输。传送结束后DMAC再将总线控制权交还给CPU。</li>
+</ul>
+</li>
+</ol>
+<h3 id="map-reduce"><a href="#map-reduce" class="headerlink" title="map reduce"></a>map reduce</h3><p><img src="http://www.opensourceforu.com/wp-content/uploads/2011/03/MapReduce.jpg" alt=""></p>
+<p>###数据库</p>
+<ol>
+<li>事务的属性包括四大类 ACID <code>atomic 原子性</code> <code>consistency 一致性</code> <code>isolation 隔离性</code> <code>durability 持久性</code></li>
+<li>查询 student 表 第5到10条数据 select * from student limit 5,10</li>
+</ol>
+<p>MYSQL 操作 出处：<a href="http://jilili.blog.51cto.com/6617089/1190014" target="_blank" rel="external">http://jilili.blog.51cto.com/6617089/1190014</a><br>3、修改表<br>ALTER TABLE tb_name;<br>mysql&gt;alter table students change course Course varchar(100) after name;<br>mysql&gt;alter table students add course varchar(100);<br>向表中插入数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">insert into tb_name （col，col2，....) values (val1,val2,....）;      </div><div class="line">insert into tutors （Tname，Gender，Age） values (&apos;jerry&apos;,&apos;M&apos;,24);  -----批量插入方式</div><div class="line">insert into tutors set Tname=&apos;Tom&apos;,Genser=&apos;F&apos;,Age=30;            -----只能实现单个字段</div><div class="line">```   </div><div class="line">插入</div></pre></td></tr></table></figure></p>
+<p>insert into tutors （Tname,Gender,Age) select Name,Genser,Age from students where Age &gt;=20<br>select * from tutors order by TID desc limit 1;          —–查看降序的第一行<br>select last_insert_ID（）;      —–查询插入的最后一个序列号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">更改数据库</div></pre></td></tr></table></figure></p>
+<p>UPDATE tb_name SET column=value where<br>mysql&gt;update students set Course=’wg’ where Name=’j’; ‘ —–更改j的课程为wg<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">删除表中的某一字段  </div><div class="line"></div><div class="line">`DELETE FROM students  WHERE Course=&apos;&apos;; `  </div><div class="line"></div><div class="line"></div><div class="line">6、select语句练习</div></pre></td></tr></table></figure></p>
+<p>select distict Gender from students;         ——相同的内容只显示一次    </p>
+<p>查找年龄大于20的同学并且按降序排列:<br>select Name,Age from students where Age&gt;20 order by Age desc;<br>年龄大于等于20并且是男性的同学:<br>select Name from students where Age&gt;20 and Gender=’M’;<br>年龄不大于20的同学:<br>select Name,Age,Gender from students where not Age&gt;20;<br>小于等于20的女同学:<br>select Name,Age,Gender from students where not （Age&gt;20 or Gender=‘M’）;<br>年龄在（21-24）之间的同学(以下两种方式）：<br>select Name，Age from students where Age&gt;20 and Age<25; 20="" select="" name，age="" from="" students="" where="" age="" between="" and="" 25;="" 显示以y开头的名称（这里限定了姓名的长度）("_"表示任意单个字符):="" name="" like="" 'y___';="" 显示以y开头的姓名：="" `select="" 'y%';="" `="" 名称中含有ing的名称（“%”表示任意长度的任意字符):="" '%ing%';="" 显示以m或n或y开头的名字（支持正则表达式）:="" rlike="" '^[mny].*$';="" 显示年龄是18、20、25的同学：="" in="" （18,20,25）;="" 显示挑选课程号(cid1)为空的同学：="" cid1="" is="" null;="" 把查询后的结果进行降序排序（asc升序，desc降序）="" name,cid1="" not="" null="" order="" by="" desc;="" 显示查询的name表头名变为name="" as="" student_name="" students;="" 隔两行数据向后取三行数据：="" limit="" 2,3;="" 所有同学的平均年龄:="" avg（age）="" 显示年龄最大的同学：="" max（age）="" 显示年龄最小的同学：="" min（age）="" 显示所有同学的年龄总和：="" sum（age）="" 显示所有同学的个数：="" count（age）="" 显示所有男同学的平均年龄：="" gender="’M‘;`" 显示所有女同学的平均年龄：="" 显示男女同学的平均年龄：="" gender,avg(age)="" group="" gender;="" 显示选修cid1的同学="" ``select="" count(cid1)="" persons,cid1="" cid1;`="" 显示选修人数大于2的课程：="" having="" persons="">=2;``</25;></p>
+<p><strong>多表查询</strong><br>每位同学及其他所学习的课程名称（以下四种方式）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">select students.Name,courses.Cname from students，courses where   students.CID1=courses.CID;  </div><div class="line">select s.Name,c.Cname from students AS s,courses AS c where s.CID1=c.CID;   </div><div class="line">select s.Name,c.Cname from students AS s left jion courses AS c on s.CID1=c.CID;(左连接）</div><div class="line">select s.Name,c.Cname from students AS s right jion courses AS c on s.CID1=c.CID;（右连接)</div><div class="line">```  </div><div class="line">显示各个同学与他相对应的导师：   </div><div class="line">`select c.Name as student,s.Name as teacher from students as s,students as c where</div><div class="line"> s.SID=c.TID;  ` </div><div class="line">显示每一位老师及其所教授的课程；没有教授的课程保持为NULL:    </div><div class="line">`select t.Tname,c.Cname from tutors as t left join courses as c on t.TID=c.TID; `</div><div class="line">显示每一个课程及其相关的老师，没有老师教授的课程将其老师显示为空:   </div><div class="line">`select t.Tname,c.Cname from tutors as t right jion courses as c on t.TID=c.TID; `</div><div class="line">显示每位同学CID1课程的课程名及其讲授了相关课程的老师的名称：  </div><div class="line">```sql </div><div class="line">select Name,Cname,Tname from students,courses,tutors where students.CID1=courses.CID  </div><div class="line">and courses.TID=tutors.TID; </div><div class="line">```  </div><div class="line">查看同学的成绩及姓名，并且按升序排列：  </div><div class="line">``` sql</div><div class="line">select students.Name,scores.Score from students,scores where students.SID=scores.SID  </div><div class="line">order by scores.Score desc;</div></pre></td></tr></table></figure></p>
+<p><strong>子查询</strong><br>挑选出courses表中没有被students中的CID2学习的课程的课程名称：<br><code>select Cname from courses where CID not IN (select CID2 from students where  
+CID2 is not null);</code><br>挑选出没有教授任何课程的老师，每个老师及其所教授课程的对应关系在courses表中：<br><code>select Tname from tutors where TID not in (select distinct TID from courses);</code><br>找出students表中CID1有两个或两个以上同学学习了的同一个门课程的课程名称：<br><code>select Cname from courses where CID in (select CID1 from students group by CID1 
+ having count(CID1) &gt;=2);</code><br>年龄大于平均年龄的同学：(使用子查询时，子查询只能返回单个值）：<br><code>select Name,Age from students where Age &gt; (select avg(age) from students);</code><br>查询学生和老师各自的年龄并写在一个表中：<br><code>(select Name，Age from students) union (select Tname，Age from tutors);</code></p>
+<p>###进程</p>
+<p>进程通信<br>windows的进程间的通信方式有:<br>1.文件映射；2. 共享内存（是文件映射的一种特殊情况）；3.邮件槽（mailslot）（点对点消息队列）; 4.匿名管道；5；命名管道； 6. 剪贴板；7.动态数据交换；8.对象链接与嵌入；9.远程过程调用；10.动态链接库；11.socket；12.WM_COPYDATA .<br>linux进程间通信的方式有：1.管道 2.信号量 3.共享内存 4.消息队列 5.套接字 6.信号<br>windows和linux共有的进程间通信方式：1. 消息（linux中叫做信号） 2. 共享内存  3. 邮槽  4. 管道   5.socket</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c/" rel="tag">#c++</a>
+          
+            <a href="/tags/基础知识/" rel="tag">#基础知识</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/08/25/unique-binary-search-trees/" rel="next" title="Unique Binary Search Trees">
+                <i class="fa fa-chevron-left"></i> Unique Binary Search Trees
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/08/26/next-permutation/" rel="prev" title="next_permutation">
+                next_permutation <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/08/25/nei-cun-xiang-guan/"
+           data-title="内存相关" data-url="http://michaelpassion.github.io/2014/08/25/nei-cun-xiang-guan/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Michael Yin" />
+          <p class="site-author-name" itemprop="name">Michael Yin</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">89</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#map-reduce"><span class="nav-number">1.</span> <span class="nav-text">map reduce</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Michael Yin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"michalpassion"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("xokQpSM051Q3krFTxov9LTL3-gzGzoHsz", "KFhvGa48KISDUidoLYjO3IJf");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
