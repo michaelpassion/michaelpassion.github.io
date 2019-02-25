@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Wow " />
+  <meta name="keywords" content="虚拟机," />
 
 
 
@@ -79,13 +79,28 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mihcael&#39;s">
-<meta property="og:url" content="http://michaelpassion.github.io/index.html">
+<meta name="description" content="使用MAC 过程中会遇到某些主机环境需要使用特定的vpn软件才能连接，这时只能安装虚拟机并安装相应的软件来访问，比如如下情况：客户主机只能使用这个软件来访问。  开始时候尝试用ccproxy做转发，奈何虚拟机cpu和内存不足，开启后发热明显，Mac 不一会就成了电饼铛，在任务大致完成后。实在受不了，便开始从网上查找资料进行配置，然而大多数都是只字片语，详细的反而没操作成功，浪费一下午时间，结合自己">
+<meta name="keywords" content="虚拟机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟机共享网络给宿主机使用">
+<meta property="og:url" content="http://michaelpassion.github.io/2019/02/25/虚拟机共享网络给宿主机使用/index.html">
 <meta property="og:site_name" content="Mihcael&#39;s">
+<meta property="og:description" content="使用MAC 过程中会遇到某些主机环境需要使用特定的vpn软件才能连接，这时只能安装虚拟机并安装相应的软件来访问，比如如下情况：客户主机只能使用这个软件来访问。  开始时候尝试用ccproxy做转发，奈何虚拟机cpu和内存不足，开启后发热明显，Mac 不一会就成了电饼铛，在任务大致完成后。实在受不了，便开始从网上查找资料进行配置，然而大多数都是只字片语，详细的反而没操作成功，浪费一下午时间，结合自己">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/22/FPRMgx.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/22/FPR8bD.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/22/FPRa8I.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/22/FPRJVe.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/22/FPRt5d.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/22/FPRa8I.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/22/FPRYUH.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/22/FPRUPA.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/22/FP4neK.png">
+<meta property="og:updated_time" content="2019-02-25T08:10:41.698Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mihcael&#39;s">
+<meta name="twitter:title" content="虚拟机共享网络给宿主机使用">
+<meta name="twitter:description" content="使用MAC 过程中会遇到某些主机环境需要使用特定的vpn软件才能连接，这时只能安装虚拟机并安装相应的软件来访问，比如如下情况：客户主机只能使用这个软件来访问。  开始时候尝试用ccproxy做转发，奈何虚拟机cpu和内存不足，开启后发热明显，Mac 不一会就成了电饼铛，在任务大致完成后。实在受不了，便开始从网上查找资料进行配置，然而大多数都是只字片语，详细的反而没操作成功，浪费一下午时间，结合自己">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/11/22/FPRMgx.jpg">
 
 
 
@@ -115,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://michaelpassion.github.io/"/>
+  <link rel="canonical" href="http://michaelpassion.github.io/2019/02/25/虚拟机共享网络给宿主机使用/"/>
 
 
 
 
 
-  <title>Mihcael's</title>
+  <title>虚拟机共享网络给宿主机使用 | Mihcael's</title>
   
 
 
@@ -140,8 +155,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,9 +228,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -246,9 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/25/虚拟机共享网络给宿主机使用/" itemprop="url">虚拟机共享网络给宿主机使用</a></h1>
+          <h1 class="post-title" itemprop="name headline">虚拟机共享网络给宿主机使用</h1>
         
 
         <div class="post-meta">
@@ -298,9 +310,7 @@
       
 
       
-        
-          
-            <p>使用MAC 过程中会遇到某些主机环境需要使用特定的vpn软件才能连接，这时只能安装虚拟机并安装相应的软件来访问，比如如下情况：客户主机只能使用这个软件来访问。</p>
+        <p>使用MAC 过程中会遇到某些主机环境需要使用特定的vpn软件才能连接，这时只能安装虚拟机并安装相应的软件来访问，比如如下情况：客户主机只能使用这个软件来访问。</p>
 <p><img src="https://s1.ax1x.com/2018/11/22/FPRMgx.jpg" alt=""></p>
 <p>开始时候尝试用ccproxy做转发，奈何虚拟机cpu和内存不足，开启后发热明显，Mac 不一会就成了电饼铛，在任务大致完成后。实在受不了，便开始从网上查找资料进行配置，然而大多数都是只字片语，详细的反而没操作成功，浪费一下午时间，结合自己薄弱的网络知识，自己找到了解决方法。下面直接说步骤：</p>
 <h4 id="1-使虚拟机能够上网，并且安装vpn软件-在为-SVClient-，我直接选择了PD的共享网络，简单方便，如图"><a href="#1-使虚拟机能够上网，并且安装vpn软件-在为-SVClient-，我直接选择了PD的共享网络，简单方便，如图" class="headerlink" title="1 使虚拟机能够上网，并且安装vpn软件(在为 SVClient) ，我直接选择了PD的共享网络，简单方便，如图"></a>1 使虚拟机能够上网，并且安装vpn软件(在为 SVClient) ，我直接选择了PD的共享网络，简单方便，如图</h4><p><img src="https://s1.ax1x.com/2018/11/22/FPR8bD.jpg" alt=""></p>
@@ -320,8 +330,6 @@
 <h4 id="5-大功告成，首先虚拟机和宿主机相互-ping-一下，测试下联通性。"><a href="#5-大功告成，首先虚拟机和宿主机相互-ping-一下，测试下联通性。" class="headerlink" title="5 大功告成，首先虚拟机和宿主机相互 ping 一下，测试下联通性。"></a>5 大功告成，首先虚拟机和宿主机相互 ping 一下，测试下联通性。</h4><p>设置没错的话，网络肯定是通了，但是。。。 在宿主机上访问客户主机时依然不通，原因在于宿主机的路由表里没有关于客户网段的路由，在访问客户主机时，也不会主动将请求先发到虚拟机，通过虚拟机转发。</p>
 <h4 id="6-添加路由表"><a href="#6-添加路由表" class="headerlink" title="6 添加路由表"></a>6 添加路由表</h4><p>在此加一条路由：<br><code>sudo route add -net 172.28.251.0/24 192.168.0.200</code><br>这条路由会将 <code>172.28.251.*</code> 的请求都转发到 <code>192.168.0.200</code> ，这样我们的宿主机 Mac 就可以上网啦</p>
 
-          
-        
       
     </div>
     
@@ -336,14 +344,20 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/虚拟机/" rel="tag"># 虚拟机</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -353,10 +367,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -364,6 +379,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -384,8 +403,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -436,6 +464,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-使虚拟机能够上网，并且安装vpn软件-在为-SVClient-，我直接选择了PD的共享网络，简单方便，如图"><span class="nav-number">1.</span> <span class="nav-text">1 使虚拟机能够上网，并且安装vpn软件(在为 SVClient) ，我直接选择了PD的共享网络，简单方便，如图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-为虚拟机添加另一块网卡，用来转发-Mac-的网络请求，此网卡设置为-Host-Only-模式"><span class="nav-number">2.</span> <span class="nav-text">2 为虚拟机添加另一块网卡，用来转发 Mac 的网络请求，此网卡设置为 Host-Only 模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-为-Mac-添加新的网络"><span class="nav-number">3.</span> <span class="nav-text">3 为 Mac 添加新的网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4在虚拟机中将-VPN-网络连接共享"><span class="nav-number">4.</span> <span class="nav-text">4在虚拟机中将 VPN 网络连接共享</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-大功告成，首先虚拟机和宿主机相互-ping-一下，测试下联通性。"><span class="nav-number">5.</span> <span class="nav-text">5 大功告成，首先虚拟机和宿主机相互 ping 一下，测试下联通性。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-添加路由表"><span class="nav-number">6.</span> <span class="nav-text">6 添加路由表</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -569,6 +613,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
