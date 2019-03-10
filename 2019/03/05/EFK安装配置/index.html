@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Wow " />
+  <meta name="keywords" content="linx," />
 
 
 
@@ -79,27 +79,18 @@
 
 
 
-<meta name="description" content="使用MAC 过程中会遇到某些主机环境需要使用特定的vpn软件才能连接，这时只能安装虚拟机并安装相应的软件来访问，比如如下情况：客户主机只能使用这个软件来访问。">
+<meta name="description" content="Td-agent安装准备增大 File Descriptors 得最大值 使用 ulimit -n 查看 12$ ulimit -n65535 如果你的系统显示 该数值为1024， 需要增大 File Descritors ，编辑 /etc/security/limits.conf ，在最后加入以下几行，并重启机器 1234root soft nofile 65536root hard nofil">
+<meta name="keywords" content="linx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="虚拟机共享网络给宿主机使用">
-<meta property="og:url" content="http://michaelpassion.github.io/2019/02/25/虚拟机共享网络给宿主机使用/index.html">
+<meta property="og:title" content="EFK安装配置">
+<meta property="og:url" content="http://michaelpassion.github.io/2019/03/05/EFK安装配置/index.html">
 <meta property="og:site_name" content="Michael&#39;s">
-<meta property="og:description" content="使用MAC 过程中会遇到某些主机环境需要使用特定的vpn软件才能连接，这时只能安装虚拟机并安装相应的软件来访问，比如如下情况：客户主机只能使用这个软件来访问。">
+<meta property="og:description" content="Td-agent安装准备增大 File Descriptors 得最大值 使用 ulimit -n 查看 12$ ulimit -n65535 如果你的系统显示 该数值为1024， 需要增大 File Descritors ，编辑 /etc/security/limits.conf ，在最后加入以下几行，并重启机器 1234root soft nofile 65536root hard nofil">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://s1.ax1x.com/2018/11/22/FPRMgx.jpg">
-<meta property="og:image" content="https://s1.ax1x.com/2018/11/22/FPR8bD.jpg">
-<meta property="og:image" content="https://s1.ax1x.com/2018/11/22/FPRa8I.jpg">
-<meta property="og:image" content="https://s1.ax1x.com/2018/11/22/FPRJVe.jpg">
-<meta property="og:image" content="https://s1.ax1x.com/2018/11/22/FPRt5d.jpg">
-<meta property="og:image" content="https://s1.ax1x.com/2018/11/22/FPRa8I.jpg">
-<meta property="og:image" content="https://s1.ax1x.com/2018/11/22/FPRYUH.jpg">
-<meta property="og:image" content="https://s1.ax1x.com/2018/11/22/FPRUPA.jpg">
-<meta property="og:image" content="https://s1.ax1x.com/2018/11/22/FP4neK.png">
-<meta property="og:updated_time" content="2019-02-25T08:46:46.140Z">
+<meta property="og:updated_time" content="2019-03-10T15:51:28.944Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="虚拟机共享网络给宿主机使用">
-<meta name="twitter:description" content="使用MAC 过程中会遇到某些主机环境需要使用特定的vpn软件才能连接，这时只能安装虚拟机并安装相应的软件来访问，比如如下情况：客户主机只能使用这个软件来访问。">
-<meta name="twitter:image" content="https://s1.ax1x.com/2018/11/22/FPRMgx.jpg">
+<meta name="twitter:title" content="EFK安装配置">
+<meta name="twitter:description" content="Td-agent安装准备增大 File Descriptors 得最大值 使用 ulimit -n 查看 12$ ulimit -n65535 如果你的系统显示 该数值为1024， 需要增大 File Descritors ，编辑 /etc/security/limits.conf ，在最后加入以下几行，并重启机器 1234root soft nofile 65536root hard nofil">
 
 
 
@@ -129,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://michaelpassion.github.io/2019/02/25/虚拟机共享网络给宿主机使用/"/>
+  <link rel="canonical" href="http://michaelpassion.github.io/2019/03/05/EFK安装配置/"/>
 
 
 
 
 
-  <title>虚拟机共享网络给宿主机使用 | Michael's</title>
+  <title>EFK安装配置 | Michael's</title>
   
 
 
@@ -272,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://michaelpassion.github.io/2019/02/25/虚拟机共享网络给宿主机使用/">
+    <link itemprop="mainEntityOfPage" href="http://michaelpassion.github.io/2019/03/05/EFK安装配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Michael">
@@ -289,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">虚拟机共享网络给宿主机使用</h1>
+          <h1 class="post-title" itemprop="name headline">EFK安装配置</h1>
         
 
         <div class="post-meta">
@@ -301,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-25T16:08:51+08:00">
-                2019-02-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-05T16:50:45+08:00">
+                2019-03-05
               </time>
             
 
@@ -324,8 +315,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/side-work/" itemprop="url" rel="index">
-                    <span itemprop="name">side_work</span>
+                  <a href="/categories/工作/" itemprop="url" rel="index">
+                    <span itemprop="name">工作</span>
                   </a>
                 </span>
 
@@ -342,9 +333,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/02/25/虚拟机共享网络给宿主机使用/#comments" itemprop="discussionUrl">
+                <a href="/2019/03/05/EFK安装配置/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/25/虚拟机共享网络给宿主机使用/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2019/03/05/EFK安装配置/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -372,26 +363,38 @@
       
 
       
-        <p>使用MAC 过程中会遇到某些主机环境需要使用特定的vpn软件才能连接，这时只能安装虚拟机并安装相应的软件来访问，比如如下情况：客户主机只能使用这个软件来访问。</p>
+        <h1 id="Td-agent"><a href="#Td-agent" class="headerlink" title="Td-agent"></a>Td-agent</h1><h3 id="安装准备"><a href="#安装准备" class="headerlink" title="安装准备"></a>安装准备</h3><h4 id="增大-File-Descriptors-得最大值"><a href="#增大-File-Descriptors-得最大值" class="headerlink" title="增大 File Descriptors 得最大值"></a>增大 <code>File Descriptors</code> 得最大值</h4><p> 使用 <code>ulimit -n</code> 查看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ulimit -n</span><br><span class="line">65535</span><br></pre></td></tr></table></figure>
+<p>如果你的系统显示 该数值为1024， 需要增大 File Descritors ，编辑 /etc/security/limits.conf ，在最后加入以下几行，并重启机器</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root soft nofile 65536</span><br><span class="line">root hard nofile 65536</span><br><span class="line">* soft nofile 65536</span><br><span class="line">* hard nofile 65536</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<p><img src="https://s1.ax1x.com/2018/11/22/FPRMgx.jpg" alt=""></p>
-<p>开始时候尝试用ccproxy做转发，奈何虚拟机cpu和内存不足，开启后发热明显，Mac 不一会就成了电饼铛，在任务大致完成后。实在受不了，便开始从网上查找资料进行配置，然而大多数都是只字片语，详细的反而没操作成功，浪费一下午时间，结合自己薄弱的网络知识，自己找到了解决方法。下面直接说步骤：</p>
-<h4 id="1-使虚拟机能够上网，并且安装vpn软件-在为-SVClient-，我直接选择了PD的共享网络，简单方便，如图"><a href="#1-使虚拟机能够上网，并且安装vpn软件-在为-SVClient-，我直接选择了PD的共享网络，简单方便，如图" class="headerlink" title="1 使虚拟机能够上网，并且安装vpn软件(在为 SVClient) ，我直接选择了PD的共享网络，简单方便，如图"></a>1 使虚拟机能够上网，并且安装vpn软件(在为 SVClient) ，我直接选择了PD的共享网络，简单方便，如图</h4><p><img src="https://s1.ax1x.com/2018/11/22/FPR8bD.jpg" alt=""></p>
-<p>安装软件，填写账号，首先使虚拟机能连上客户主机，在成功设置后计算机会多一个网络连接，这个连接就是之后要分享给宿主机的连接(废话，分享别的也连不上客户主机啊！！！)</p>
-<p><img src="https://s1.ax1x.com/2018/11/22/FPRa8I.jpg" alt=""></p>
-<h4 id="2-为虚拟机添加另一块网卡，用来转发-Mac-的网络请求，此网卡设置为-Host-Only-模式"><a href="#2-为虚拟机添加另一块网卡，用来转发-Mac-的网络请求，此网卡设置为-Host-Only-模式" class="headerlink" title="2 为虚拟机添加另一块网卡，用来转发 Mac 的网络请求，此网卡设置为 Host-Only 模式"></a>2 为虚拟机添加另一块网卡，用来转发 Mac 的网络请求，此网卡设置为 Host-Only 模式</h4><p><img src="https://s1.ax1x.com/2018/11/22/FPRJVe.jpg" alt=""></p>
-<p>起始地址可以根据自己情况设置，不要与正常上网的网络有冲突，勾选 ==在系统偏好中显示== , 以便在后面使 Mac 也连接这块网卡</p>
-<h4 id="3-为-Mac-添加新的网络"><a href="#3-为-Mac-添加新的网络" class="headerlink" title="3 为 Mac 添加新的网络"></a>3 为 Mac 添加新的网络</h4><p><img src="https://s1.ax1x.com/2018/11/22/FPRt5d.jpg" alt=""></p>
-<p>使用DHCP获取地址即可，DNS服务器可以不填(因为这里不涉及域名解析)</p>
-<h4 id="4在虚拟机中将-VPN-网络连接共享"><a href="#4在虚拟机中将-VPN-网络连接共享" class="headerlink" title="4在虚拟机中将 VPN 网络连接共享"></a>4在虚拟机中将 VPN 网络连接共享</h4><p><img src="https://s1.ax1x.com/2018/11/22/FPRa8I.jpg" alt=""></p>
-<p>分享此网络连接 , 点击 –&gt; 属性 –&gt; 共享</p>
-<p><img src="https://s1.ax1x.com/2018/11/22/FPRYUH.jpg" alt=""></p>
-<p>需要将共享到 Host-Only 模式的连接，此处为 本地连接3</p>
-<p>在共享后，本地连接3的ip地址会自动设置，可能会设置为 192.168.0.1 这个地址比较特殊，我们需要改一下改为 192.168.0.200 (这是根据虚拟机网卡 Host-Only #2的地址段来确定的)</p>
-<p><img src="https://s1.ax1x.com/2018/11/22/FPRUPA.jpg" alt=""></p>
-<p><img src="https://s1.ax1x.com/2018/11/22/FP4neK.png" alt=""></p>
-<h4 id="5-大功告成，首先虚拟机和宿主机相互-ping-一下，测试下联通性。"><a href="#5-大功告成，首先虚拟机和宿主机相互-ping-一下，测试下联通性。" class="headerlink" title="5 大功告成，首先虚拟机和宿主机相互 ping 一下，测试下联通性。"></a>5 大功告成，首先虚拟机和宿主机相互 ping 一下，测试下联通性。</h4><p>设置没错的话，网络肯定是通了，但是。。。 在宿主机上访问客户主机时依然不通，原因在于宿主机的路由表里没有关于客户网段的路由，在访问客户主机时，也不会主动将请求先发到虚拟机，通过虚拟机转发。</p>
-<h4 id="6-添加路由表"><a href="#6-添加路由表" class="headerlink" title="6 添加路由表"></a>6 添加路由表</h4><p>在此加一条路由：<br><code>sudo route add -net 172.28.251.0/24 192.168.0.200</code><br>这条路由会将 <code>172.28.251.*</code> 的请求都转发到 <code>192.168.0.200</code> ，这样我们的宿主机 Mac 就可以上网啦</p>
+<h4 id="优化网络内核参数"><a href="#优化网络内核参数" class="headerlink" title="优化网络内核参数"></a>优化网络内核参数</h4><p>高负载的环境中会存在很多 Flunted 实例， 将这些参数加入到 <code>/etc/systc..conf</code> 文件中。并且执行 <code>sysctl -p</code> 命令 或重启系统使这些参数生效。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">net.core.somaxconn = 1024</span><br><span class="line">net.core.netdev_max_backlog = 5000</span><br><span class="line">net.core.rmem_max = 16777216</span><br><span class="line">net.core.wmem_max = 16777216</span><br><span class="line">net.ipv4.tcp_wmem = 4096 12582912 16777216</span><br><span class="line">net.ipv4.tcp_rmem = 4096 12582912 16777216</span><br><span class="line">net.ipv4.tcp_max_syn_backlog = 8096</span><br><span class="line">net.ipv4.tcp_slow_start_after_idle = 0</span><br><span class="line">net.ipv4.tcp_tw_reuse = 1</span><br><span class="line">net.ipv4.ip_local_port_range = 10240 65535</span><br></pre></td></tr></table></figure>
+<h3 id="安装-td-agent-在-redhat-中"><a href="#安装-td-agent-在-redhat-中" class="headerlink" title="安装 td-agent (在 redhat 中)"></a>安装 td-agent (在 redhat 中)</h3><p>如果系统可以连接互联网，可以通过以下脚本自动安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent3.sh | sh</span><br></pre></td></tr></table></figure>
+<p>该命令从treasuredata上获取到一个自动安装脚本，并执行该脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">echo "=============================="</span><br><span class="line">echo " td-agent Installation Script "</span><br><span class="line">echo "=============================="</span><br><span class="line">echo "This script requires superuser access to install rpm packages."</span><br><span class="line">echo "You will be prompted for your password by sudo."</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> clear any previous sudo permission</span><br><span class="line">sudo -k</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> run inside sudo</span><br><span class="line">sudo sh &lt;&lt;SCRIPT</span><br><span class="line"></span><br><span class="line"><span class="meta">  #</span> add GPG key</span><br><span class="line">  rpm --import https://packages.treasuredata.com/GPG-KEY-td-agent</span><br><span class="line"></span><br><span class="line"><span class="meta">  #</span> add treasure data repository to yum</span><br><span class="line">  cat &gt;/etc/yum.repos.d/td.repo &lt;&lt;'EOF';</span><br><span class="line">[treasuredata]</span><br><span class="line">name=TreasureData</span><br><span class="line">baseurl=http://packages.treasuredata.com/3/redhat/\$releasever/\$basearch</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=https://packages.treasuredata.com/GPG-KEY-td-agent</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"><span class="meta">  #</span> update your sources</span><br><span class="line">  yum check-update</span><br><span class="line"></span><br><span class="line"><span class="meta">  #</span> install the toolbelt</span><br><span class="line">  yes | yum install -y td-agent</span><br><span class="line"></span><br><span class="line">SCRIPT</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> message</span><br><span class="line">echo ""</span><br><span class="line">echo "Installation completed. Happy Logging!"</span><br><span class="line">echo ""</span><br></pre></td></tr></table></figure>
+<p>td-agent 安装完毕，启动td-agent后台进程</p>
+<p>td-agent 提供了两种脚本</p>
+<h4 id="systemd"><a href="#systemd" class="headerlink" title="systemd"></a>systemd</h4><p>可以用 <code>/usr/lib/systemd/system/td-agent</code> 来启动或停止 <code>td-agent</code> 进程，相应的可以将 td-agent.service 添加到 <code>etc/systemd/system</code> 中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl start td-agent.service</span><br><span class="line">$ sudo systemctl status td-agent.service</span><br></pre></td></tr></table></figure>
+<h4 id="init-d"><a href="#init-d" class="headerlink" title="init.d"></a>init.d</h4><p>用<code>/etc/init.d/td-agent</code>启动或停止 td-agent 进程</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo /etc/init.d/td-agent start</span><br><span class="line">Starting td-agent: [  OK  ]</span><br><span class="line"><span class="meta">$</span> sudo /etc/init.d/td-agent status</span><br><span class="line">td-agent (pid  21678) is running...</span><br></pre></td></tr></table></figure>
+<p>==启动后遇到以下问题==</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unexpected error error_class=Errno::EACCES error=&quot;Permission denied @ rb_sysopen - /var/log/td-agent/httpd-access.log</span><br></pre></td></tr></table></figure>
+<p>原因：默认使用的 td-agent 用户启动用户，在读取日志文件时没有权限，改为 root 用户启动 td-agent </p>
+<p>切换到root用户</p>
+<p>执行命令：</p>
+<p>sysctl -w vm.max_map_count=262144</p>
+<p>查看结果：</p>
+<p>sysctl -a|grep vm.max_map_count</p>
+<p>显示：</p>
+<p>vm.max_map_count = 262144</p>
+<p>上述方法修改之后，如果重启虚拟机将失效，所以：</p>
+<p>解决办法：</p>
+<p>在   /etc/sysctl.conf文件最后添加一行</p>
+<p>vm.max_map_count=262144</p>
+<p>即可永久修改</p>
 
       
     </div>
@@ -407,6 +410,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/linx/" rel="tag"># linx</a>
+          
+        </div>
+      
 
       
       
@@ -416,15 +425,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/03/01/Redhat-安装-FPM-打包工具/" rel="next" title="Redhat 安装 FPM 打包工具">
+                <i class="fa fa-chevron-left"></i> Redhat 安装 FPM 打包工具
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/01/Redhat-安装-FPM-打包工具/" rel="prev" title="Redhat 安装 FPM 打包工具">
-                Redhat 安装 FPM 打包工具 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -582,7 +591,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-使虚拟机能够上网，并且安装vpn软件-在为-SVClient-，我直接选择了PD的共享网络，简单方便，如图"><span class="nav-number">1.</span> <span class="nav-text">1 使虚拟机能够上网，并且安装vpn软件(在为 SVClient) ，我直接选择了PD的共享网络，简单方便，如图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-为虚拟机添加另一块网卡，用来转发-Mac-的网络请求，此网卡设置为-Host-Only-模式"><span class="nav-number">2.</span> <span class="nav-text">2 为虚拟机添加另一块网卡，用来转发 Mac 的网络请求，此网卡设置为 Host-Only 模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-为-Mac-添加新的网络"><span class="nav-number">3.</span> <span class="nav-text">3 为 Mac 添加新的网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4在虚拟机中将-VPN-网络连接共享"><span class="nav-number">4.</span> <span class="nav-text">4在虚拟机中将 VPN 网络连接共享</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-大功告成，首先虚拟机和宿主机相互-ping-一下，测试下联通性。"><span class="nav-number">5.</span> <span class="nav-text">5 大功告成，首先虚拟机和宿主机相互 ping 一下，测试下联通性。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-添加路由表"><span class="nav-number">6.</span> <span class="nav-text">6 添加路由表</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Td-agent"><span class="nav-number">1.</span> <span class="nav-text">Td-agent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装准备"><span class="nav-number">1.0.1.</span> <span class="nav-text">安装准备</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#增大-File-Descriptors-得最大值"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">增大 File Descriptors 得最大值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优化网络内核参数"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">优化网络内核参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-td-agent-在-redhat-中"><span class="nav-number">1.0.2.</span> <span class="nav-text">安装 td-agent (在 redhat 中)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#systemd"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">systemd</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#init-d"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">init.d</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -745,9 +754,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://michaelpassion.github.io/2019/02/25/虚拟机共享网络给宿主机使用/';
-          this.page.identifier = '2019/02/25/虚拟机共享网络给宿主机使用/';
-          this.page.title = '虚拟机共享网络给宿主机使用';
+          this.page.url = 'http://michaelpassion.github.io/2019/03/05/EFK安装配置/';
+          this.page.identifier = '2019/03/05/EFK安装配置/';
+          this.page.title = 'EFK安装配置';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://xx0000xx.disqus.com/embed.js';
