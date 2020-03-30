@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Michael&#39;s">
 <meta property="og:description" content="在编辑一个定时执行的python脚本时发现，crontab 设置正确，/var/log/crond中也有脚本执行的记录，但是却没有真正执行。翻阅了一些资料，找到一个简单的解决问题的方法，在执行python 脚本前 切换目录到 python 脚本所在文件。 问题原因：通过为脚本增加日志输出发现（方式 python fakefile.py &amp;gt; fakefile.log 2&amp;gt;&amp;amp;1），">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-30T14:11:51.846Z">
+<meta property="og:updated_time" content="2020-03-30T14:19:52.913Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="crontab 无法执行python脚本">
 <meta name="twitter:description" content="在编辑一个定时执行的python脚本时发现，crontab 设置正确，/var/log/crond中也有脚本执行的记录，但是却没有真正执行。翻阅了一些资料，找到一个简单的解决问题的方法，在执行python 脚本前 切换目录到 python 脚本所在文件。 问题原因：通过为脚本增加日志输出发现（方式 python fakefile.py &amp;gt; fakefile.log 2&amp;gt;&amp;amp;1），">
@@ -364,7 +364,8 @@
 
       
         <p>在编辑一个定时执行的python脚本时发现，crontab 设置正确，<code>/var/log/crond</code>中也有脚本执行的记录，但是却没有真正执行。翻阅了一些资料，找到一个简单的解决问题的方法，在执行python 脚本前 切换目录到 python 脚本所在文件。</p>
-<p>问题原因：通过为脚本增加日志输出发现（方式 <code>python fakefile.py &gt; fakefile.log 2&gt;&amp;1</code>），原来是打开文件的使用的相对路径。 写日志是一个好习惯，遇到bug查看日志也是最高效的定位问题的手段。</p>
+<p>问题原因：通过为脚本增加日志输出发现（方式 <code>python fakefile.py &gt; fakefile.log 2&gt;&amp;1</code>），报错显示：原因是打开文件的使用的相对路径。</p>
+<p> 写日志是一个好习惯，遇到bug查看日志也是最高效的定位问题的手段。</p>
 
       
     </div>
