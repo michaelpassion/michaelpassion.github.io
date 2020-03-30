@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Wow " />
+  <meta name="keywords" content="linux,crond," />
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Michael&#39;s">
-<meta property="og:url" content="http://michaelpassion.github.io/categories/side-work/index.html">
+<meta name="description" content="在编辑一个定时执行的python脚本时发现，crontab 设置正确，/var/log/crond中也有脚本执行的记录，但是却没有真正执行。翻阅了一些资料，找到一个简单的解决问题的方法，在执行python 脚本前 切换目录到 python 脚本所在文件。 问题原因：通过为脚本增加日志输出发现（方式 python fakefile.py &amp;gt; fakefile.log 2&amp;gt;&amp;amp;1），">
+<meta name="keywords" content="linux,crond">
+<meta property="og:type" content="article">
+<meta property="og:title" content="crontab 无法执行python脚本">
+<meta property="og:url" content="http://michaelpassion.github.io/2020/03/30/crontab-无法执行python脚本/index.html">
 <meta property="og:site_name" content="Michael&#39;s">
+<meta property="og:description" content="在编辑一个定时执行的python脚本时发现，crontab 设置正确，/var/log/crond中也有脚本执行的记录，但是却没有真正执行。翻阅了一些资料，找到一个简单的解决问题的方法，在执行python 脚本前 切换目录到 python 脚本所在文件。 问题原因：通过为脚本增加日志输出发现（方式 python fakefile.py &amp;gt; fakefile.log 2&amp;gt;&amp;amp;1），">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-03-30T14:11:51.846Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Michael&#39;s">
+<meta name="twitter:title" content="crontab 无法执行python脚本">
+<meta name="twitter:description" content="在编辑一个定时执行的python脚本时发现，crontab 设置正确，/var/log/crond中也有脚本执行的记录，但是却没有真正执行。翻阅了一些资料，找到一个简单的解决问题的方法，在执行python 脚本前 切换目录到 python 脚本所在文件。 问题原因：通过为脚本增加日志输出发现（方式 python fakefile.py &amp;gt; fakefile.log 2&amp;gt;&amp;amp;1），">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://michaelpassion.github.io/categories/side-work/"/>
+  <link rel="canonical" href="http://michaelpassion.github.io/2020/03/30/crontab-无法执行python脚本/"/>
 
 
 
 
 
-  <title>分类: side_work | Michael's</title>
+  <title>crontab 无法执行python脚本 | Michael's</title>
   
 
 
@@ -140,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,55 +249,183 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>side_work<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://michaelpassion.github.io/2020/03/30/crontab-无法执行python脚本/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Michael">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Michael's">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/02/25/虚拟机共享网络给宿主机使用/" itemprop="url">
-              
-                <span itemprop="name">虚拟机共享网络给宿主机使用</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">crontab 无法执行python脚本</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-02-25T16:08:51+08:00"
-              content="2019-02-25" >
-          02-25
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-30T18:37:57+08:00">
+                2020-03-30
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/pick-up/" itemprop="url" rel="index">
+                    <span itemprop="name">pick up</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/30/crontab-无法执行python脚本/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/03/30/crontab-无法执行python脚本/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在编辑一个定时执行的python脚本时发现，crontab 设置正确，<code>/var/log/crond</code>中也有脚本执行的记录，但是却没有真正执行。翻阅了一些资料，找到一个简单的解决问题的方法，在执行python 脚本前 切换目录到 python 脚本所在文件。</p>
+<p>问题原因：通过为脚本增加日志输出发现（方式 <code>python fakefile.py &gt; fakefile.log 2&gt;&amp;1</code>），原来是打开文件的使用的相对路径。 写日志是一个好习惯，遇到bug查看日志也是最高效的定位问题的手段。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/crond/" rel="tag"># crond</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/23/shell脚本执行错误-r-command-not-found/" rel="next" title="shell脚本执行错误 $'':command not found">
+                <i class="fa fa-chevron-left"></i> shell脚本执行错误 $'':command not found
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -300,6 +433,20 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -530,6 +677,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -547,6 +698,18 @@
       <script id="dsq-count-scr" src="https://xx0000xx.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://michaelpassion.github.io/2020/03/30/crontab-无法执行python脚本/';
+          this.page.identifier = '2020/03/30/crontab-无法执行python脚本/';
+          this.page.title = 'crontab 无法执行python脚本';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xx0000xx.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
